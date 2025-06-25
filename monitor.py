@@ -11,6 +11,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 import json
+import smtplib
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -46,23 +47,17 @@ def authenticate_gmail():
             token.write(creds.to_json())
     return creds
 
-def send_email(subject, body, to_email, creds):
-    service = build('gmail', 'v1', credentials=creds)
+def send_email(subject, body, to_email):
+    from_email = os.getenv('GMAIL_ADDRESS')
+    app_password = os.getenv('GMAIL_APP_PASSWORD')
+    msg = MIMEText(body)
+    msg['Subject'] = subject
+    msg['From'] = from_email
+    msg['To'] = to_email
 
-    message = MIMEMultipart()
-    message['to'] = to_email
-    message['subject'] = subject
-
-    msg_body = MIMEText(body, 'plain')
-    message.attach(msg_body)
-
-    raw_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
-
-    try:
-        message = service.users().messages().send(userId="me", body={'raw': raw_message}).execute()
-        logging.info(f"Email sent! Message Id: {message['id']}")
-    except Exception as e:
-        logging.error(f"Error sending email: {e}")
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(from_email, app_password)
+        smtp.sendmail(from_email, [to_email], msg.as_string())
 
 def main():
     url = os.getenv('URL')
