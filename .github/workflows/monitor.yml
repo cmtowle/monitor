@@ -14,7 +14,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Download the previous hash artifact (if it exists)
+      # Step 2: Debug artifact existence
+      - name: Debug artifact existence
+        run: |
+          echo "Checking if artifact exists..."
+          ls -al hash.txt || echo "No hash.txt found locally."
+      
+      # Step 3: Download the previous hash artifact (if it exists)
       - name: Download previous hash
         id: download_hash
         uses: actions/download-artifact@v4
@@ -23,17 +29,23 @@ jobs:
           path: hash.txt
         continue-on-error: true  # Allow the workflow to proceed if the artifact does not exist
 
-      # Step 3: Set up Python
+      # Step 4: Debug artifact download
+      - name: Debug artifact download
+        run: |
+          echo "Checking downloaded artifact..."
+          ls -al hash.txt || echo "No hash.txt found after download."
+
+      # Step 5: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
           python-version: '3.x'
 
-      # Step 4: Install dependencies
+      # Step 6: Install dependencies
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Step 5: Run the monitoring script
+      # Step 7: Run the monitoring script
       - name: Run script
         env:
           URL: ${{ secrets.URL }}
@@ -42,7 +54,7 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python monitor.py
 
-      # Step 6: Check if hash.txt exists
+      # Step 8: Verify hash.txt creation
       - name: Verify hash.txt creation
         run: |
           if [ ! -f hash.txt ]; then
@@ -50,7 +62,7 @@ jobs:
             exit 1
           fi
 
-      # Step 7: Upload the updated hash artifact
+      # Step 9: Upload the updated hash artifact
       - name: Upload updated hash
         uses: actions/upload-artifact@v4
         with:
