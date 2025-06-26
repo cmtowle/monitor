@@ -42,9 +42,16 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python monitor.py
 
-      # Step 6: Upload the updated hash artifact
+      # Step 6: Check if hash.txt exists
+      - name: Verify hash.txt creation
+        run: |
+          if [ ! -f hash.txt ]; then
+            echo "Error: hash.txt was not created by the script."
+            exit 1
+          fi
+
+      # Step 7: Upload the updated hash artifact
       - name: Upload updated hash
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: hash
