@@ -14,38 +14,32 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Debug artifact existence
-      - name: Debug artifact existence
-        run: |
-          echo "Checking if artifact exists..."
-          ls -al hash.txt || echo "No hash.txt found locally."
-      
-      # Step 3: Download the previous hash artifact (if it exists)
-      - name: Download previous hash
-        id: download_hash
-        uses: actions/download-artifact@v4
+      # Step 2: Restore cached hash
+      - name: Restore cached hash
+        uses: actions/cache@v3
         with:
-          name: hash
           path: hash.txt
-        continue-on-error: true  # Allow the workflow to proceed if the artifact does not exist
+          key: website-monitor-hash
+          restore-keys: |
+            website-monitor-hash
 
-      # Step 4: Debug artifact download
-      - name: Debug artifact download
+      # Step 3: Debug hash restoration
+      - name: Debug hash restoration
         run: |
-          echo "Checking downloaded artifact..."
-          ls -al hash.txt || echo "No hash.txt found after download."
+          echo "Checking restored hash..."
+          cat hash.txt || echo "No hash.txt found in cache."
 
-      # Step 5: Set up Python
+      # Step 4: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
           python-version: '3.x'
 
-      # Step 6: Install dependencies
+      # Step 5: Install dependencies
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Step 7: Run the monitoring script
+      # Step 6: Run the monitoring script
       - name: Run script
         env:
           URL: ${{ secrets.URL }}
@@ -54,7 +48,7 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python monitor.py
 
-      # Step 8: Verify hash.txt creation
+      # Step 7: Verify hash.txt creation
       - name: Verify hash.txt creation
         run: |
           if [ ! -f hash.txt ]; then
@@ -62,9 +56,9 @@ jobs:
             exit 1
           fi
 
-      # Step 9: Upload the updated hash artifact
-      - name: Upload updated hash
-        uses: actions/upload-artifact@v4
+      # Step 8: Update cached hash
+      - name: Update cached hash
+        uses: actions/cache@v3
         with:
-          name: hash
           path: hash.txt
+          key: website-monitor-hash
