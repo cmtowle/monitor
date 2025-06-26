@@ -25,7 +25,7 @@ def main():
     url = os.getenv('URL')
     recipient_email = os.getenv('RECIPIENT_EMAIL')
 
-    previous_hash = 1
+    previous_hash = 'db197829b76b384ab56af895e5b2081f8111c35c57d4148c42c6c3d39a1a7907'
     print(f"Initial hash: {previous_hash}")
 
     # For GitHub Actions, just run once
