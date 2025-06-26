@@ -54,7 +54,7 @@ jobs:
       - name: Pull latest changes
         run: |
           git fetch origin main
-          git merge origin/main
+          git pull --rebase origin main  # Force synchronization with the remote branch
 
       # Step 8: Commit updated hash file to the repository
       - name: Commit updated hash
