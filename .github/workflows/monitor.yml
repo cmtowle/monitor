@@ -13,6 +13,9 @@ jobs:
       # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: main  # Replace 'main' with your default branch name
+          fetch-depth: 0  # Fetch the full history to ensure we can pull remote changes
 
       # Step 2: Debug hash file existence
       - name: Debug hash file existence
@@ -47,13 +50,19 @@ jobs:
             exit 1
           fi
 
-      # Step 7: Commit updated hash file to the repository
+      # Step 7: Pull latest remote changes
+      - name: Pull latest changes
+        run: |
+          git fetch origin main
+          git merge origin/main
+
+      # Step 8: Commit updated hash file to the repository
       - name: Commit updated hash
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add hash.txt
-          git commit -m "Update hash.txt"
-          git push
+          git commit -m "Update hash.txt" || echo "No changes to commit."
+          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
