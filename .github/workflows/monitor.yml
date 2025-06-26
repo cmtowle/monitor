@@ -12,19 +12,19 @@ jobs:
     steps:
       # Step 1: Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Step 2: Download the previous hash artifact
       - name: Download previous hash
         id: download_hash
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: hash
           path: hash.txt
 
       # Step 3: Set up Python
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: '3.x'
 
@@ -45,7 +45,7 @@ jobs:
       # Step 6: Upload the updated hash artifact
       - name: Upload updated hash
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: hash
           path: hash.txt
