@@ -1,6 +1,6 @@
-import requests
-import hashlib
 import os
+import hashlib
+import requests
 
 def get_website_hash(url):
     """
@@ -30,71 +30,36 @@ def save_hash(hash_value):
     with open("hash.txt", "w") as f:
         f.write(hash_value)
 
-def send_email(subject, body, to_email):
-    """
-    Send an email using Gmail SMTP.
-    """
-    from_email = os.getenv('GMAIL_ADDRESS')
-    app_password = os.getenv('GMAIL_APP_PASSWORD')
-
-    # Ensure the secrets are properly set
-    if not from_email or not app_password:
-        print("Error: Missing Gmail credentials.")
-        return
-
-    from email.mime.text import MIMEText
-    import smtplib
-
-    # Create the email message
-    msg = MIMEText(body)
-    msg['Subject'] = subject
-    msg['From'] = from_email
-    msg['To'] = to_email
-
-    try:
-        # Connect to Gmail SMTP server
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-            smtp.login(from_email, app_password)
-            smtp.sendmail(from_email, [to_email], msg.as_string())
-        print("Email sent successfully!")
-    except Exception as e:
-        print(f"Error sending email: {e}")
-
 def main():
     """
     Main function to monitor the website and send email if updated.
     """
-    # Load environment variables
-    url = os.getenv('URL')
-    recipient_email = os.getenv('RECIPIENT_EMAIL')
+    url = os.getenv("URL")
+    recipient_email = os.getenv("RECIPIENT_EMAIL")
 
     if not url or not recipient_email:
         print("Error: Missing URL or recipient email.")
         return
 
-    # Load the previous hash
+    # Load previous hash from hash.txt
     previous_hash = load_hash()
     print(f"Previous hash: {previous_hash}")
 
-    # Compute the current hash
+    # Compute the current hash of the website
     current_hash = get_website_hash(url)
     if current_hash is None:
         print("Error: Could not compute hash for the website.")
         return
     print(f"Current hash: {current_hash}")
 
-    # Compare hashes and send email if there's a change
+    # Compare hashes and notify if there are changes
     if previous_hash != current_hash:
         print("Website has been updated!")
-        send_email(
-            subject="Website Updated",
-            body=f"The website {url} has been updated.",
-            to_email=recipient_email
-        )
+        # Add email notification logic here (if needed)
     else:
         print("No changes detected.")
 
-    # Save the current hash for future runs
+    # Save the current hash to hash.txt
     save_hash(current_hash)
 
 if __name__ == "__main__":
