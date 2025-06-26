@@ -91,10 +91,11 @@ def main():
             body=f"The website {url} has been updated.",
             to_email=recipient_email
         )
-        # Save the new hash
-        save_hash(current_hash)
     else:
         print("No changes detected.")
+
+    # Save the current hash for future runs
+    save_hash(current_hash)
 
 if __name__ == "__main__":
     main()
