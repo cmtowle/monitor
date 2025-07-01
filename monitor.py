@@ -91,11 +91,11 @@ def main():
         )
         send_email("Website Updated", email_body, recipient_email)
         print("Email sent!")
-        save_html(current_html)
     else:
         print("No changes detected.")
 
     save_hash(current_hash)
+    save_html(current_html)
 
 if __name__ == "__main__":
     main()
