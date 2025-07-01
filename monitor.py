@@ -8,6 +8,12 @@ from email.mime.text import MIMEText
 HASH_FILE = "hash.txt"
 CONTENT_FILE = "content.txt"
 
+from bs4 import BeautifulSoup
+
+def prettify_html(html):
+    soup = BeautifulSoup(html, "html.parser")
+    return soup.prettify()
+
 def get_website_html(url):
     try:
         response = requests.get(url)
@@ -68,15 +74,14 @@ def main():
         print("Error: Missing URL or recipient email.")
         return
 
-    # Load previous hash and HTML
     previous_hash = load_hash()
     previous_html = load_html()
 
-    # Fetch current HTML and hash
-    current_html = get_website_html(url)
-    if current_html is None:
+    current_html_raw = get_website_html(url)
+    if current_html_raw is None:
         print("Error: Could not fetch website content.")
         return
+    current_html = prettify_html(current_html_raw)
     current_hash = get_website_hash(current_html)
 
     print(f"Previous hash: {previous_hash}")
