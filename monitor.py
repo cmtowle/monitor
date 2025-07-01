@@ -95,7 +95,7 @@ def main():
         print("No changes detected.")
 
     save_hash(current_hash)
-    save_html(current_html)
+    save_html(current_html + "\nTEST")
 
 if __name__ == "__main__":
     main()
