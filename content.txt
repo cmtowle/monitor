@@ -45,9 +45,9 @@
   </script>
   <link href="/themes/custom/energy_gov/favicon.ico" rel="icon" type="image/vnd.microsoft.icon"/>
   <link href="https://www.energy.gov/cfo/articles/fy-2026-budget-justification" hreflang="en" rel="alternate"/>
-  <script defer="" src="/sites/default/files/google_tag/eere.energy.gov/google_tag.script.js?syyxrs">
+  <script defer="" src="/sites/default/files/google_tag/eere.energy.gov/google_tag.script.js?sz0sej">
   </script>
-  <script defer="" src="/sites/default/files/google_tag/energygov/google_tag.script.js?syyxrs">
+  <script defer="" src="/sites/default/files/google_tag/energygov/google_tag.script.js?sz0sej">
   </script>
   <title>
    FY 2026 Budget Justification | Department of Energy
