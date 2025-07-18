@@ -42,7 +42,7 @@
    </meta>
   </meta>
  </head>
- <body class="bg1 hearing" id="default">
+ <body class="bg3 hearing" id="default">
   <!--stopindex-->
   <a class="sr-only" href="#main-nav">
    Skip to primary navigation
