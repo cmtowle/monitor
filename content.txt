@@ -634,8 +634,8 @@
                 </span>
                </td>
                <td>
-                <a class="hearing-pdf" href="/download/fy26-commerce-justice-science-senate-bill-summary" onctrck="javascript: _gaq.push(['_trackPageview', '/download/fy26-commerce-justice-science-senate-bill-summary']);">
-                 FY26 Commerce, Justice, Science Senate Bill Summary
+                <a class="hearing-pdf" href="/download/milcon-va-fy26-cds" onctrck="javascript: _gaq.push(['_trackPageview', '/download/milcon-va-fy26-cds']);">
+                 MilCon-VA FY26 CDS
                 </a>
                </td>
                <tr class="acrobat">
@@ -644,8 +644,8 @@
                  </span>
                 </td>
                 <td>
-                 <a class="hearing-pdf" href="/download/fy26-commerce-justice-science-bill-text" onctrck="javascript: _gaq.push(['_trackPageview', '/download/fy26-commerce-justice-science-bill-text']);">
-                  FY26 Commerce, Justice, Science Bill Text
+                 <a class="hearing-pdf" href="/download/fy26-commerce-justice-science-senate-bill-summary" onctrck="javascript: _gaq.push(['_trackPageview', '/download/fy26-commerce-justice-science-senate-bill-summary']);">
+                  FY26 Commerce, Justice, Science Senate Bill Summary
                  </a>
                 </td>
                 <tr class="acrobat">
@@ -654,10 +654,32 @@
                   </span>
                  </td>
                  <td>
-                  <a class="hearing-pdf" href="/download/fy26-cjs-senate-report" onctrck="javascript: _gaq.push(['_trackPageview', '/download/fy26-cjs-senate-report']);">
-                   FY26 Commerce, Justice, Science Senate Report
+                  <a class="hearing-pdf" href="/download/fy26-commerce-justice-science-bill-text" onctrck="javascript: _gaq.push(['_trackPageview', '/download/fy26-commerce-justice-science-bill-text']);">
+                   FY26 Commerce, Justice, Science Bill Text
                   </a>
                  </td>
+                 <tr class="acrobat">
+                  <td>
+                   <span class="glyphicon glyphicon-file">
+                   </span>
+                  </td>
+                  <td>
+                   <a class="hearing-pdf" href="/download/fy26-cjs-senate-report" onctrck="javascript: _gaq.push(['_trackPageview', '/download/fy26-cjs-senate-report']);">
+                    FY26 Commerce, Justice, Science Senate Report
+                   </a>
+                  </td>
+                  <tr class="acrobat">
+                   <td>
+                    <span class="glyphicon glyphicon-file">
+                    </span>
+                   </td>
+                   <td>
+                    <a class="hearing-pdf" href="/download/cjs-fy26-cds" onctrck="javascript: _gaq.push(['_trackPageview', '/download/cjs-fy26-cds']);">
+                     CJS FY26 CDS
+                    </a>
+                   </td>
+                  </tr>
+                 </tr>
                 </tr>
                </tr>
               </tr>
