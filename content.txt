@@ -42,7 +42,7 @@
    </meta>
   </meta>
  </head>
- <body class="bg2 hearing" id="default">
+ <body class="bg1 hearing" id="default">
   <!--stopindex-->
   <a class="sr-only" href="#main-nav">
    Skip to primary navigation
@@ -638,6 +638,28 @@
                  FY26 Commerce, Justice, Science Senate Bill Summary
                 </a>
                </td>
+               <tr class="acrobat">
+                <td>
+                 <span class="glyphicon glyphicon-file">
+                 </span>
+                </td>
+                <td>
+                 <a class="hearing-pdf" href="/download/fy26-commerce-justice-science-bill-text" onctrck="javascript: _gaq.push(['_trackPageview', '/download/fy26-commerce-justice-science-bill-text']);">
+                  FY26 Commerce, Justice, Science Bill Text
+                 </a>
+                </td>
+                <tr class="acrobat">
+                 <td>
+                  <span class="glyphicon glyphicon-file">
+                  </span>
+                 </td>
+                 <td>
+                  <a class="hearing-pdf" href="/download/fy26-cjs-senate-report" onctrck="javascript: _gaq.push(['_trackPageview', '/download/fy26-cjs-senate-report']);">
+                   FY26 Commerce, Justice, Science Senate Report
+                  </a>
+                 </td>
+                </tr>
+               </tr>
               </tr>
              </tr>
             </tr>
